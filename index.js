@@ -52,6 +52,7 @@ var SmtpMailAdapter = mailOptions => {
     var _templatePath = mailOptions.templatePath || "";
     var _multiTemplate = mailOptions.multiTemplate || false;
     var _multiLang = mailOptions.multiLang || false;
+    var _emailField = mailOptions.emailField || 'email';
     var _multiLangColumn = mailOptions.multiLangColumn || "lang";
  
     var transport = nodemailer.createTransport({
@@ -210,7 +211,7 @@ var SmtpMailAdapter = mailOptions => {
 
         var senderOptions = {
             from: mailOptions.fromAddress,
-            to: user.email,
+            to: user[_emailField],
             subject: subject,
             html: template
         };
@@ -293,7 +294,7 @@ var SmtpMailAdapter = mailOptions => {
         
         var senderOptions = {
             from: mailOptions.fromAddress,
-            to: user.email,
+            to: user[_emailField],
             subject: subject,
             html: template
         };
